@@ -1,19 +1,21 @@
+DROP database atividade1;
 CREATE DATABASE atividade1;
-USE atividade1;
+use atividade1;
 
 CREATE TABLE IF NOT EXISTS pessoa(
-CPF varchar(11) primary key,
+ID_PESSOA int primary key,
+CPF decimal(11) unique not null,
 NOME varchar(250),
 DATA_NASCIMENTO date
 );
 
-INSERT INTO pessoa(cpf, nome, data_nascimento)
+INSERT INTO pessoa(id_pessoa, cpf, nome, data_nascimento)
 VALUES
-('09876543221', 'Rebeca', '2005-08-22'),
-('34743274382', 'Ana', '2006-09-23'), 
-('10929392332', 'Clara', '2005-10-24');
+('5464324', '09876543221', 'Rebeca', '2005-08-22'),
+('3213827', '34743274382', 'Ana', '2006-09-23'), 
+('4903782', '10929392332', 'Clara', '2005-10-24');
 
-SELECT cpf, nome, data_nascimento
+SELECT id_pessoa, cpf, nome, data_nascimento
 FROM pessoa;
 
 CREATE TABLE IF NOT EXISTS curso(
@@ -54,35 +56,39 @@ ENTRADA char(7) ,
 ATIVO int,
 ID_CURSO int,
 codigo_turma int,
+ID_PESSOA int, 
 CONSTRAINT CURSO_FK
 FOREIGN KEY (ID_CURSO) 
 REFERENCES curso(ID_CURSO),
 CONSTRAINT ID_TURMA
 FOREIGN KEY (codigo_turma)
-REFERENCES turma(codigo_turma)
+REFERENCES turma(codigo_turma),
+CONSTRAINT PESSOA_ID
+FOREIGN KEY (ID_PESSOA)
+REFERENCES pessoa(ID_PESSOA) 
 );
 
-INSERT INTO aluno(matricula, entrada, ativo, id_curso, codigo_turma)
+INSERT INTO aluno(matricula, id_pessoa, entrada, ativo, id_curso, codigo_turma)
 VALUES 
-(NULL, '2024-01', '1', '982', '2323232'),
-(NULL,'2024-02', '1', '198', '5454545'),
-(NULL,'2025-01', '0', '123', '9898989');
+(NULL, '3213827', '2024-01', '1', '982', '2323232'),
+(NULL, '4903782', '2024-02', '1', '198', '5454545'),
+(NULL, '5464324', '2025-01', '0', '123', '9898989');
 
-SELECT matricula, entrada, ativo, id_curso, codigo_turma
+SELECT id_pessoa, matricula, entrada, ativo, id_curso, codigo_turma
 FROM aluno;
 
 CREATE TABLE IF NOT EXISTS autor(
-ID_AUTOR int primary key
+ID_AUTOR int primary key,
+NOME varchar(250)
 );
 
-INSERT INTO autor(id_autor)
+INSERT INTO autor(id_autor, nome)
 VALUES
-(12345), 
-(32415),
-(54321);
+(12345, "Suzane Coliins"), 
+(32415, "Mariana"),
+(54321, "Rafaela Tolentino");
 
-SELECT id_autor
-FROM autor;
+SELECT * FROM autor;
 
 CREATE TABLE IF NOT EXISTS livro(
 ISBN int primary key,
