@@ -1,0 +1,21 @@
+Manipulação de dados:
+
+° Inserir dados:
+insert into nome_tabela(coluna1, coluna2, coluna3...)
+values(valor1, valor2, valor3);
+
+° Apagar resistros:
+delete from nome_tabela where condição
+- condição diz quais registros serão apagados
+- ex: id_pessoa = 40
+
+° Atualizar registros:
+
+update nome_tabela
+set (qual valor/coluna) coluna1 = valor1, coluna2 = valor2...
+where condição;
+
+° Visualizar:
+select coluna1, coluna2...
+from nome_tabela
+where condição
