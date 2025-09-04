@@ -1,0 +1,9 @@
+select = where: quais registros queremos visualizar
+Project = select: quais atributos visualizar
+union: uni dois conjuntos, compatibilidade
+intersection: o que tem em comum entre os conjuntos
+set division: retira o que há de comum entre os conjuntos
+cartesion product: combinação linear entre dois conjuntos, testa os pares
+join: concatena tuplas com relação
+Division: selcelionas as tuplas que contenham todos os valores do atributos de disisão da segunda realção
+
