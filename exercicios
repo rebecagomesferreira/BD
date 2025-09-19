@@ -1,0 +1,76 @@
+insert into departamento(nome)
+value ("Medicina");
+select * from departamento;
+
+insert into curso(nome, deparID)
+values ("Medicina", 2);
+select * from curso;
+
+insert into professor(nome, deparID)
+values("Manu Cit", 2);
+select * from professor;
+
+insert into materia (nome, idcurso)
+values ("Anatomia", 2);
+select * from materia;
+
+insert into turma(idcurso, idprofessor, idmateria)
+values(2, 2, 2);
+select * from turma;
+
+insert into aluno(CPF, nome, data_nasc)
+values ("09876543211", "Rafaela", '2001-01-01');
+select * from aluno;
+
+create table matricula(
+matricula_aluno int not null,
+id_curso int not null, 
+id_turma int not null, 
+semestre int not null,
+constraint idmatricula
+foreign key (matricula_aluno) references aluno(matricula),
+constraint id_curso
+foreign key(id_curso) references curso(id),
+constraint id_turma
+foreign key(id_turma) references turma(codigo)
+);
+
+insert into matricula(matricula_aluno, id_curso, id_turma, semestre)
+values(1, 1, 1, 2024-1);
+select *  from matricula;
+
+alter table matricula
+modify column semestre varchar(250);
+
+update matricula
+set semestre = "2024/1"
+where matricula_aluno = 1;
+select * from matricula;
+
+insert into matricula
+values(2, 2, 2, "2025/5");
+select * from matricula;
+
+rename table matricula to matriculas_alunos;
+
+alter table aluno
+add email varchar(250);
+
+select * from aluno;
+
+alter table aluno
+add email varchar(250) not null;
+
+select * from aluno;
+
+update aluno
+set email = "rebeca@gmail.com"
+where matricula = '1';
+
+select * from aluno;
+
+update aluno
+set email = "rafaela@gmail.com"
+where matricula = '2';
+
+select * from aluno;
